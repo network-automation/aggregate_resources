@@ -1,15 +1,17 @@
 # Aggregate Examples
 These demonstration playbooks compare using `with_items` to `aggregate` for the [eos_vlan](https://docs.ansible.com/ansible/latest/eos_vlan_module.html) Ansible module.  They were tested on Arista EOS but are written in a way where the networking platform can be easily changed by editing the `ansible_network_os` variable.
 
-# Using `with_items` Method
+Why use aggregate?  There is significant speed savings by using aggregate.  Instead of looping over each item, the list of VLANs is sent as one data structure.  In timing this using the Linux `time` command (e.g. `time ansible-playbook oldway.yml`) I went from 18 minutes+ to around 10 seconds.
+
+## Using loop Method
 Run the playbook that uses a `with_items` loop like this:
 ```bash
 ansible-playbook oldway.yml
 ```
 To view the playbook [click here](oldway.yml).
 
-# Using `aggregate` Method
-Run the playbook that uses a `with_items` loop like this:
+## Using aggregate Method
+Run the playbook that uses a `aggregate` loop like this:
 ```bash
 ansible-playbook newway.yml
 ```
