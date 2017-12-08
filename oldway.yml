@@ -1,9 +1,13 @@
 ---
-- hosts: cisco
-  connection: local
+- hosts: arista
+  connection: network_cli
+  remote_user: admin
+  become: yes
+  become_method: enable
+  vars:
+    ansible_network_os: "eos"
   tasks:
-    - nxos_vlan:
-        provider: "{{ login_info }}"
+    - net_vlan:
         vlan_id: "{{ item.vlan_id }}"
         name: "{{ item.name | default('VLAN' + item.vlan_id|string) }}"
         state: "{{ item.state | default('active') }}"
