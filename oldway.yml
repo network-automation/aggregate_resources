@@ -7,7 +7,7 @@
   vars:
     ansible_network_os: "eos"
   tasks:
-    - net_vlan:
+    - eos_vlan:
         vlan_id: "{{ item.vlan_id }}"
         name: "{{ item.name | default('VLAN' + item.vlan_id|string) }}"
         state: "{{ item.state | default('active') }}"
