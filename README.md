@@ -4,6 +4,8 @@ These demonstration playbooks compare using `with_items` to `aggregate` for the 
 Why use aggregate?  There is significant speed savings by using aggregate.  Instead of looping over each item, the list of VLANs is sent as one data structure.  In timing this using the Linux `time` command (e.g. `time ansible-playbook oldway.yml`) I went from 18 minutes+ to around 10 seconds.
 
 ## Using loop Method
+The loop method will run the task eos_vlan X times where X is the amount of VLANs.  This means with 500 VLANs we are running the eos_vlan task 500 times.
+
 Run the playbook that uses a `with_items` loop like this:
 ```bash
 ansible-playbook oldway.yml
@@ -11,6 +13,8 @@ ansible-playbook oldway.yml
 To view the playbook [click here](oldway.yml).
 
 ## Using aggregate Method
+The aggregate method will run the task once (vs the loop method running X times) and send the list of VLANs in bulk as one data structure.
+
 Run the playbook that uses a `aggregate` loop like this:
 ```bash
 ansible-playbook newway.yml
