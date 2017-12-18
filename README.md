@@ -17,9 +17,18 @@ To view the playbook [click here](oldway.yml).
 ## Using aggregate Method
 The aggregate method will run the task once (vs the loop method running X times) and send the list of VLANs in bulk as one data structure.
 
-Run the playbook that uses a `aggregate` loop like this:
+Run the playbook that uses the `aggregate` like this:
 ```bash
 ansible-playbook newway.yml -k
+```
+To view the playbook [click here](newway.yml).
+
+## Using aggregate Method with purge
+The purge method will remove all VLANs not sent with the aggregate.  For example if there was 300 VLANs configured (VLANs 1-300) on the switch prior to the playbook running and the aggregate had 1-200 sent as part of the task, The VLANs 201-300 would be removed.
+
+Run the playbook that uses the `aggregate` with `purge` like this:
+```bash
+ansible-playbook purge.yml -k
 ```
 To view the playbook [click here](newway.yml).
 
