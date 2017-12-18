@@ -10,7 +10,7 @@ The loop method will run the task eos_vlan X times where X is the amount of VLAN
 
 Run the playbook that uses a `with_items` loop like this:
 ```bash
-ansible-playbook oldway.yml
+ansible-playbook oldway.yml -k
 ```
 To view the playbook [click here](oldway.yml).
 
@@ -19,7 +19,7 @@ The aggregate method will run the task once (vs the loop method running X times)
 
 Run the playbook that uses a `aggregate` loop like this:
 ```bash
-ansible-playbook newway.yml
+ansible-playbook newway.yml -k
 ```
 To view the playbook [click here](newway.yml).
 

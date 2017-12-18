@@ -1,5 +1,0 @@
-ansible_ssh_pass: Bullf00d
-login_info:
-  username: admin
-  password: Bullf00d
-  transport: cli
