@@ -1,0 +1,22 @@
+---
+- hosts: arista
+  connection: local
+  remote_user: admin
+  vars:
+    ansible_network_os: "eos"
+    login:
+      username: admin
+      password: Bullf00d
+      auth_pass: Bullf00d
+      authorize: true
+
+  tasks:
+    - eos_vlan:
+        vlan_id: "{{ item.vlan_id }}"
+        name: "{{ item.name | default('VLAN' + item.vlan_id|string) }}"
+        state: "{{ item.state | default('active') }}"
+        provider: "{{login}}"
+      with_items:
+        - { vlan_id: 1, name: default }
+        - { vlan_id: 2, name: Vl2 }
+        - { vlan_id: 3, state: suspend }
